@@ -18,6 +18,7 @@ services:
       - VIRTUAL_HOST=aip.tapes.ga
       - LETSENCRYPT_HOST=aip.tapes.ga
       - LETSENCRYPT_EMAIL=felinae98@gmail.cn
+      - DATABASE_URL=mysql://root:tapes@db:3306/aip
 
   pes:
     image: felinae98/tapes-pes
@@ -27,6 +28,7 @@ services:
       - VIRTUAL_HOST=pes.tapes.ga
       - LETSENCRYPT_HOST=pes.tapes.ga
       - LETSENCRYPT_EMAIL=felinae98@gmail.cn
+      - DATABASE_URL=mysql://root:tapes@db:3306/pes
     
   nginx-proxy:
     image: jwilder/nginx-proxy
