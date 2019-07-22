@@ -12,7 +12,7 @@ services:
       "
 
   aip:
-    image: felinae98/tapes-aip
+    image: felinae98/tapes-aip:master
     depends_on:
       - db
     environment:
@@ -23,7 +23,7 @@ services:
       - DATABASE_URL=mysql://root:tapes@db:3306/aip
 
   pes:
-    image: felinae98/tapes-pes
+    image: felinae98/tapes-pes:master
     depends_on:
       - db
     environment:
