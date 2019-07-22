@@ -1,0 +1,62 @@
+version: '3'
+
+services:
+  db:
+    image: mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=tapes
+    entrypoint:
+      sh -c "
+        echo 'CREATE DATABASE IF NOT EXISTS aip; CREATE DATABASE IF NOT EXISTS pes;' > /docker-entrypoint-initdb.d/init.sql;
+        /usr/local/bin/docker-entrypoint.sh --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+      "
+
+  aip:
+    image: feinae98/aip
+    environment:
+      - DEBUG=False
+      - VIRTUAL_HOST=aip.tapes.ga
+      - LETSENCRYPT_HOST=aip.tapes.ga
+      - LETSENCRYPT_EMAIL=felinae98@gmail.cn
+
+  pes:
+    image: felinae98/pes
+    environment:
+      - DEBUG=False
+      - AIP_URL=http://aip/
+      - VIRTUAL_HOST=pes.tapes.ga
+      - LETSENCRYPT_HOST=pes.tapes.ga
+      - LETSENCRYPT_EMAIL=felinae98@gmail.cn
+    
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - conf:/etc/nginx/conf.d
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - dhparam:/etc/nginx/dhparam
+      - certs:/etc/nginx/certs:ro
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
+  letsencrypt:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    container_name: nginx-proxy-le
+    volumes:
+      - conf:/etc/nginx/conf.d
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - dhparam:/etc/nginx/dhparam
+      - certs:/etc/nginx/certs:rw
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+volumes:
+  conf:
+  vhost:
+  html:
+  dhparam:
+  certs: 
+
