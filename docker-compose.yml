@@ -12,7 +12,7 @@ services:
       "
 
   aip:
-    image: feinae98/tapes-aip
+    image: felinae98/tapes-aip
     environment:
       - DEBUG=False
       - VIRTUAL_HOST=aip.tapes.ga
