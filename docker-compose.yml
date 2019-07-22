@@ -12,7 +12,7 @@ services:
       "
 
   aip:
-    image: feinae98/aip
+    image: feinae98/tapes-aip
     environment:
       - DEBUG=False
       - VIRTUAL_HOST=aip.tapes.ga
@@ -20,7 +20,7 @@ services:
       - LETSENCRYPT_EMAIL=felinae98@gmail.cn
 
   pes:
-    image: felinae98/pes
+    image: felinae98/tapes-pes
     environment:
       - DEBUG=False
       - AIP_URL=http://aip/
