@@ -13,6 +13,8 @@ services:
 
   aip:
     image: felinae98/tapes-aip
+    depends_on:
+      - db
     environment:
       - DEBUG=False
       - VIRTUAL_HOST=aip.tapes.ga
@@ -22,6 +24,8 @@ services:
 
   pes:
     image: felinae98/tapes-pes
+    depends_on:
+      - db
     environment:
       - DEBUG=False
       - AIP_URL=http://aip/
