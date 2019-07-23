@@ -17,8 +17,8 @@ services:
       - db
     environment:
       - DEBUG=False
-      - VIRTUAL_HOST=aip.tapes.ga
-      - LETSENCRYPT_HOST=aip.tapes.ga
+      - VIRTUAL_HOST=aip.fates.felinae98.cn
+      - LETSENCRYPT_HOST=aip.fates.felinae98.cn
       - LETSENCRYPT_EMAIL=felinae98@gmail.cn
       - DATABASE_URL=mysql://root:tapes@db:3306/aip
 
@@ -29,8 +29,8 @@ services:
     environment:
       - DEBUG=False
       - AIP_URL=http://aip/
-      - VIRTUAL_HOST=pes.tapes.ga
-      - LETSENCRYPT_HOST=pes.tapes.ga
+      - VIRTUAL_HOST=pes.fates.felinae98.cn 
+      - LETSENCRYPT_HOST=pes.fates.felinae98.cn
       - LETSENCRYPT_EMAIL=felinae98@gmail.cn
       - DATABASE_URL=mysql://root:tapes@db:3306/pes
     
